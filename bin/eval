@@ -1,1 +1,3 @@
-ruby -Ilib ./bin/micro_deploy
+#!/usr/bin/env bash
+
+ruby -Ilib ./bin/micro_deploy "$@"
