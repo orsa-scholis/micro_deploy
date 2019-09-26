@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'micro_deploy/cli'
+
+MicroDeploy::CLI.start ARGV

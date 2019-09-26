@@ -1,0 +1,31 @@
+require:
+  - rubocop-rspec
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/NonNilCheck:
+  IncludeSemanticChanges: true
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 12
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/DescribedClass:
+  SkipBlocks: true
+
+RSpec/NestedGroups:
+  Max: 5
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
