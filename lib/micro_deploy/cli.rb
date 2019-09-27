@@ -28,5 +28,10 @@ module MicroDeploy
     def restart(service, environment = 'master')
       puts "I am drowning and rescuing again #{service} #{environment}"
     end
+
+    desc 'init', 'Creates a scaffold directory structure'
+    def init
+      create_file 'testing'
+    end
   end
 end
