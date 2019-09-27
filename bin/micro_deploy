@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'micro_deploy/cli'
+require 'micro_deploy/cli/mission_control'
 
-MicroDeploy::CLI.start ARGV
+MicroDeploy::CLI::MissionControl.start ARGV
