@@ -9,6 +9,12 @@ module MicroDeploy
       module TasksLoader
         SERVICE_FILES = %w[Runfile Stopfile].freeze
 
+        private_class_method def self.restartable_sites
+          Dir['sites/**/*'].select do |site|
+            SERVICE_FILES.all? { |file| FileTest.exist? "#{site}/#{file}" }
+          end
+        end
+
         def load_commands
           Dir['sites/**/Deployfile'].each(&method(:load_deploy_task))
           Dir['sites/**/Runfile'].each(&method(:load_run_task))
@@ -19,9 +25,6 @@ module MicroDeploy
         private
 
         def load_restart_task
-          restartable_sites = Dir['sites/**/*'].select do |site|
-            SERVICE_FILES.all? { |file| FileTest.exist? "#{site}/#{file}" }
-          end
           restartable_sites.each do |site|
             file = "#{site}/#{SERVICE_FILES[0]}"
             project = extract_task_namespaces(file).first
