@@ -17,7 +17,7 @@ module MicroDeploy
           ).merge(options)
 
           DockerCompose.new('up', flags)
-            .explain('Starting up the docker compose file').execute
+                       .explain('Starting up the docker compose file').execute
         end
       end
     end

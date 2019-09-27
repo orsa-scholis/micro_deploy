@@ -13,7 +13,7 @@ module MicroDeploy
           }.merge(options)
 
           DockerCompose.new('down', flags)
-            .explain('Shutting down docker compose file').execute
+                       .explain('Shutting down docker compose file').execute
         end
       end
     end

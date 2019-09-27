@@ -25,7 +25,7 @@ module MicroDeploy
           ).merge(options)
 
           Docker.new('run', flags, swo_image_name(docker_name_supplement))
-            .explain('Starting SWO docker image').execute
+                .explain('Starting SWO docker image').execute
         end
 
         def migrate_swo_rails_db(docker_name_supplement = '')
@@ -35,7 +35,7 @@ module MicroDeploy
 
         def migrate_swo_laravel_db(docker_name_supplement = '')
           flags = { remove: true, env_file: default_env_file }
-          arguments = [swo_image_name(docker_name_supplement), 'php', 'artisan', 'migrate', '--no-interaction', '--force']
+          arguments = [swo_image_name(docker_name_supplement)] + %w[php artisan migrate --no-interaction --force]
           Docker.new('run', flags, *arguments).execute
         end
       end

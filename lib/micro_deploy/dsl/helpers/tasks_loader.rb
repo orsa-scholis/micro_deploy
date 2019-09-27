@@ -19,7 +19,9 @@ module MicroDeploy
         def load_restart_task
           files = %w[Runfile Stopfile]
 
-          restartable_sites = Dir['sites/**/*'].select { |site| files.all? { |file| FileTest.exist? "#{site}/#{file}" } }
+          restartable_sites = Dir['sites/**/*'].select do |site|
+            files.all? { |file| FileTest.exist? "#{site}/#{file}" }
+          end
           restartable_sites.each do |site|
             file = "#{site}/#{files[0]}"
             project = extract_task_namespaces(file).first
