@@ -35,7 +35,7 @@ module MicroDeploy
         puts "I am drowning and rescuing again #{service} #{environment}"
       end
 
-      register MicroDeploy::CLI::InitializeGroup, 'init', 'init', 'Creates a scaffold directory structure'
+      register MicroDeploy::CLI::InitializeGroup, 'init', 'init NAME', 'Creates a scaffold directory structure'
     end
   end
 end
