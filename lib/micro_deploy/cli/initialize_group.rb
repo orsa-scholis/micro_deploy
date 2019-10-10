@@ -13,7 +13,7 @@ module MicroDeploy
       argument :name, type: :string, desc: 'The name of the project group'
 
       def self.source_root
-        File.expand_path('../templates', __FILE__)
+        File.expand_path('templates', __dir__)
       end
 
       def create_directory
