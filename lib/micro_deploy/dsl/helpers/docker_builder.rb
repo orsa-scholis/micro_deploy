@@ -10,7 +10,11 @@ module MicroDeploy
           docker_name_supplement = options.delete :docker_name_supplement
           docker_name_prefix = options.delete :docker_name_prefix
 
-          Docker.new('build', merge_options(options, docker_name_prefix, docker_name_supplement), options[:base_path], '.').execute
+          Docker.new(
+            'build',
+            merge_options(options, docker_name_prefix, docker_name_supplement),
+            options[:base_path], '.'
+          ).execute
         end
 
         private
