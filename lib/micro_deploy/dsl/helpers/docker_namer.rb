@@ -8,11 +8,17 @@ module MicroDeploy
           "#{project_name}_#{project_environment}#{format_supplement(supplement)}"
         end
 
-        def image_name(supplement = '')
-          "/#{project_name}#{format_supplement(supplement)}:#{project_environment}"
+        def image_name(prefix = '', supplement = '')
+          "#{format_prefix(prefix)}#{project_name}#{format_supplement(supplement)}:#{project_environment}"
         end
 
         private
+
+        def format_prefix(prefix)
+          return '' if prefix.nil?
+
+          prefix.empty? ? '' : prefix + '/'
+        end
 
         def format_supplement(supplement)
           return '' if supplement.nil?

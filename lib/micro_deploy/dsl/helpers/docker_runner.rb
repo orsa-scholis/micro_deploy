@@ -14,6 +14,7 @@ module MicroDeploy
 
         def start_docker_image(options)
           docker_name_supplement = options.delete :docker_name_supplement
+          docker_name_prefix = options.delete :docker_name_prefix
           container_name = container_name(docker_name_supplement)
 
           stop_docker_container(docker_name_supplement)
@@ -24,20 +25,11 @@ module MicroDeploy
             network: 'traefik'
           ).merge(options)
 
-          Docker.new('run', flags, image_name(docker_name_supplement))
+          Docker.new('run', flags, image_name(docker_name_prefix, docker_name_supplement))
                 .explain('Starting docker image').execute
         end
 
-        def migrate_rails_db(docker_name_supplement = '')
-          flags = { remove: true, env_file: default_env_file }
-          Docker.new('run', flags, image_name(docker_name_supplement), 'bin/rails', 'db:migrate').execute
-        end
 
-        def migrate_laravel_db(docker_name_supplement = '')
-          flags = { remove: true, env_file: default_env_file }
-          arguments = [image_name(docker_name_supplement)] + %w[php artisan migrate --no-interaction --force]
-          Docker.new('run', flags, *arguments).execute
-        end
       end
     end
   end
