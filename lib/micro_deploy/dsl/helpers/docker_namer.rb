@@ -4,12 +4,12 @@ module MicroDeploy
   module DSL
     module Helpers
       module DockerNamer
-        def swo_container_name(supplement = '')
+        def container_name(supplement = '')
           "#{project_name}_#{project_environment}#{format_supplement(supplement)}"
         end
 
-        def swo_image_name(supplement = '')
-          "swo/#{project_name}#{format_supplement(supplement)}:#{project_environment}"
+        def image_name(supplement = '')
+          "/#{project_name}#{format_supplement(supplement)}:#{project_environment}"
         end
 
         private
