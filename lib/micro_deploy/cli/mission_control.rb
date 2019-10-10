@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require 'thor'
+require 'micro_deploy/cli'
 require 'micro_deploy/cli/initialize_group'
+require 'micro_deploy/cli/project_generate_group'
+require 'active_support/core_ext'
 
 module MicroDeploy
   module CLI
@@ -36,6 +39,7 @@ module MicroDeploy
       end
 
       register MicroDeploy::CLI::InitializeGroup, 'init', 'init NAME', 'Creates a scaffold directory structure'
+      register MicroDeploy::CLI::ProjectGenerateGroup, 'generate', 'generate NAME', 'Generates a new project'
     end
   end
 end
