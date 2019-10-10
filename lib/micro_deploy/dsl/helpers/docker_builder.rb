@@ -6,18 +6,23 @@ module MicroDeploy
   module DSL
     module Helpers
       module DockerBuilder
-        def build_swo_image(options)
+        def build_image(options)
           docker_name_supplement = options.delete :docker_name_supplement
+          docker_name_prefix = options.delete :docker_name_prefix
 
-          Docker.new('build', merge_swo_options(options, docker_name_supplement), options[:base_path], '.').execute
+          Docker.new(
+            'build',
+            merge_options(options, docker_name_prefix, docker_name_supplement),
+            options[:base_path], '.'
+          ).execute
         end
 
         private
 
-        def merge_swo_options(options, docker_name_supplement)
+        def merge_options(options, docker_name_prefix, docker_name_supplement)
           options.merge(
             base_path: Dir.pwd,
-            tag: swo_image_name(docker_name_supplement),
+            tag: image_name(docker_name_prefix, docker_name_supplement),
             dockerfile_path: 'prod.Dockerfile'
           )
         end
