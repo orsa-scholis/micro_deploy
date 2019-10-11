@@ -9,7 +9,7 @@ module MicroDeploy
 
       include Thor::Actions
 
-      argument :name, type: :string, desc: ''
+      argument :name, type: :string, desc: 'The name of the project'
 
       def setup_git
         system! "git init --bare #{REPOSITORY_DIRECTORY}", "Initialize empty git repository at #{REPOSITORY_DIRECTORY}"
