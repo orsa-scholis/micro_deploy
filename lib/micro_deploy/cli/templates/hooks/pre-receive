@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'pathname'
+require 'tmpdir'
+require 'micro_deploy/dsl/command'
+
+PROJECTS_PATH = '<%= File.expand_path '.', project_home %>'
+SYMLINK_PATH = File.expand_path __FILE__
+
+# TODO: Code must be adapted to newer structure
+
+project, environment = Pathname(SYMLINK_PATH).each_filename.to_a[-4..-3]
+environment = environment.split('.')[0]
+
+puts "Deploying to #{project} using environment #{environment}"
+
+ARGF.each do |line|
+  _, newrev, refname = line.split(' ')
+  next unless refname == 'refs/heads/master'
+
+  Dir.mktmpdir("#{project}_#{environment}") do |tmp_dir|
+    git_archive_command = DSL::Command.new(%W[git archive #{newrev}])
+    tar_command = DSL::Command.new(%W[tar -x -C #{tmp_dir}])
+
+    git_archive_command.pipe(tar_command).execute
+
+    Dir.chdir(PROJECTS_PATH) do
+      DSL::Helpers::RakeHelper.execute_rake_command("#{project}:#{environment}:deploy", tmp_dir)
+      DSL::Helpers::RakeHelper.execute_rake_command("#{project}:#{environment}:run")
+    end
+  end
+end
