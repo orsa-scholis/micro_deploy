@@ -12,10 +12,7 @@ module MicroDeploy
       argument :name, type: :string, desc: 'The name of the project'
 
       def check_if_git_is_installed
-        unless git_installed?
-          $stderr.puts 'Git is not installed!'
-          exit 1
-        end
+        git_warning unless git_installed?
       end
 
       def setup_git
@@ -26,6 +23,11 @@ module MicroDeploy
 
       def git_installed?
         system 'git --version'
+      end
+
+      def git_warning
+        warn 'Git is not installed!'
+        exit 1
       end
     end
   end
