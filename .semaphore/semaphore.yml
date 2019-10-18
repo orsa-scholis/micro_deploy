@@ -30,12 +30,10 @@ blocks:
       jobs:
         - name: Install deps
           commands:
+            - checkout
             - ls -al
             - cat .ruby-version
             - bundle install
-      prologue:
-        commands:
-          - checkout
   - name: Say success
     dependencies:
       - Lint
