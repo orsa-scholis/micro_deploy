@@ -13,17 +13,6 @@ blocks:
             - bundle exec rubocop
     dependencies:
       - Install dependencies
-  - name: RSpec
-    task:
-      prologue:
-        commands:
-          - checkout
-      jobs:
-        - name: Run specs
-          commands:
-            - bundle exec rspec
-    dependencies:
-      - Install dependencies
   - name: Install dependencies
     dependencies: []
     task:
@@ -31,15 +20,4 @@ blocks:
         - name: Install deps
           commands:
             - checkout
-            - ls -al
-            - cat .ruby-version
             - bundle install
-  - name: Say success
-    dependencies:
-      - Lint
-      - RSpec
-    task:
-      jobs:
-        - name: 'Yes'
-          commands:
-            - echo "Everything worked!!"
