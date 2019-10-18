@@ -63,7 +63,7 @@ DEPENDENCIES
   bundler (~> 2.0)
   micro_deploy!
   rake (~> 10.0)
-  rspec (~> 3.0)
+  rspec
   rubocop
   rubocop-rspec
 

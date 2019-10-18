@@ -28,8 +28,6 @@ module MicroDeploy
           Docker.new('run', flags, image_name(docker_name_prefix, docker_name_supplement))
                 .explain('Starting docker image').execute
         end
-
-
       end
     end
   end
