@@ -7,9 +7,6 @@ agent:
 blocks:
   - name: Lint
     task:
-      prologue:
-        commands:
-          - checkout
       jobs:
         - name: rubocop
           commands:
@@ -36,6 +33,9 @@ blocks:
             - ls -al
             - cat .ruby-version
             - bundle install
+      prologue:
+        commands:
+          - checkout
   - name: Say success
     dependencies:
       - Lint
