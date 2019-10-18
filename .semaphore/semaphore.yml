@@ -33,6 +33,8 @@ blocks:
       jobs:
         - name: Install deps
           commands:
+            - ls -al
+            - cat .ruby-version
             - bundle install
   - name: Say success
     dependencies:
