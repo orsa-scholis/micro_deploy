@@ -1,0 +1,45 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Lint
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: rubocop
+          commands:
+            - bundle exec rubocop
+    dependencies:
+      - Install dependencies
+  - name: RSpec
+    task:
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Run specs
+          commands:
+            - bundle exec rspec
+    dependencies:
+      - Install dependencies
+  - name: Install dependencies
+    dependencies: []
+    task:
+      jobs:
+        - name: Install deps
+          commands:
+            - bundle install
+  - name: Say success
+    dependencies:
+      - Lint
+      - RSpec
+    task:
+      jobs:
+        - name: 'Yes'
+          commands:
+            - echo "Everything worked!!"
