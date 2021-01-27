@@ -29,3 +29,4 @@ RSpec/NestedGroups:
 AllCops:
   Exclude:
     - 'bin/**/*'
+    - 'lib/micro_deploy/cli/templates/hooks/*'

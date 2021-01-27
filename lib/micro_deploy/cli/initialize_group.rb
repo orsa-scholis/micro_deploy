@@ -69,7 +69,7 @@ module MicroDeploy
       end
 
       def project_home
-        @project_directory ||= in_project? ? '.' : "./#{name}"
+        @project_home ||= in_project? ? '.' : "./#{name}"
       end
 
       def in_project?

@@ -5,7 +5,9 @@ require 'pathname'
 require 'tmpdir'
 require 'micro_deploy/dsl/command'
 
+# rubocop:disable all
 PROJECTS_PATH = '<%= File.expand_path '.', project_home %>'
+# rubocop:enable all
 SYMLINK_PATH = File.expand_path __FILE__
 
 # TODO: Code must be adapted to newer structure

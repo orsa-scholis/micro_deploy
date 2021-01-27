@@ -7,8 +7,8 @@ require 'micro_deploy/version'
 Gem::Specification.new do |spec|
   spec.name = 'micro_deploy'
   spec.version = MicroDeploy::VERSION
-  spec.authors = ['Lukas Bischof']
-  spec.email = ['me@luk4s.dev']
+  spec.authors = ['Lukas Bischof', 'Philipp Fehr']
+  spec.email = ['me@luk4s.dev', 'dev@thefehr.me']
 
   spec.summary = 'Write short deployment files and use them to deploy from remote repository'
   spec.description = 'Write short deployment files and use them to deploy from remote repository'
