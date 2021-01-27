@@ -1,5 +1,5 @@
 version: v1.0
-name: my-zivi
+name: micro_deploy
 agent:
   machine:
     type: e1-standard-2
@@ -16,8 +16,6 @@ blocks:
       minutes: 10
     dependencies: []
     task:
-      secrets:
-        - name: my-zivi
       jobs:
         - name: cache
           commands:
